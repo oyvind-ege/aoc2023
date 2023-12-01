@@ -1,23 +1,13 @@
-use std::error::Error;
 use std::fs::File;
-use std::io::prelude::*;
+use std::io::{BufRead, BufReader};
 
-fn main() {
-    let result = read_data_file("./src/Day01/data.txt");
+fn main() -> std::io::Result<()> {
+    let file = File::open("./src/Day01/data.txt")?;
+    let reader = BufReader::new(file);
 
-    let contents = match result {
-        Ok(file) => file,
-        Err(error) => panic!("Problem opening file: {:?}", error),
-    };
+    let contents = reader.lines().map(|l| l.unwrap());
 
-    println!("Contents:\n{contents}")
-}
-
-fn read_data_file(filepath: &str) -> Result<String, Box<dyn Error>> {
-    let mut file = File::open(filepath)?;
-    let mut contents = String::new();
-    file.read_to_string(&mut contents)?;
-    Ok(contents)
+    Ok(())
 }
 
 #[cfg(test)]
