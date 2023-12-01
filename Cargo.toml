@@ -1,0 +1,12 @@
+[package]
+name = "AOC"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "AOC"
+path = "src/Day01/main.rs"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
